@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import '../styles/index.css'
 
-// import { ReactComponent as IconList } from '../assets/icon-list.svg'
-// import {icon_list} from "./icon_list.svg"
-// import iconSuccess from "./icon_success.svg"
+import icon_list from "../assets/icon_list.svg"
+import illustration from "../assets/illustration-sign-up-desktop.svg"
 
 function Home() {
 
@@ -30,17 +29,13 @@ function Home() {
                 <div className="col-md-6">
                     <h1> Stay updated! </h1>
                     <p> Join 60,000+ product managers receiving monthly updates on: </p>
-                    {/* <p><img src={icon_list} alt="icon"></img> Product discovery and building what matters </p>
+                    <p><img src={icon_list} alt="icon"></img> Product discovery and building what matters </p>
                     <p><img src={icon_list} alt="icon"></img> Measuring to ensure updates are a success </p>
-                    <p><img src={icon_list} alt="icon"></img> and much more! </p> */}
+                    <p><img src={icon_list} alt="icon"></img> and much more! </p>
                     
-                    {/* <p><IconList /> Product discovery and building what matters </p>
-                    <p><IconList /> Measuring to ensure updates are a success </p>
-                    <p><IconList /> and much more! </p>         */}
-                    
-                    <form onSubmit={handleSubmit}>
+                    <form className="form" onSubmit={handleSubmit}>
                         <label className="small-text">
-                            Email address
+                            Email address {error && <span className="error">{error}</span>}
                             <input
                                 id="email"
                                 name="email"
@@ -55,13 +50,13 @@ function Home() {
                                 aria-describedby={error ? "email-error" : undefined}
                             />
                         </label>
-                        {error && <div className="error">{error}</div>}
                         <button className="btn" type = "submit">Subscribe to monthly newsletter</button>
                     </form>
                 </div>
                 <div className="col-md-6">
-                    <p>Imagen</p>
-                    {/* <img src={iconSuccess} alt="Illustration" className="illustration"></img> */}
+                    <img src={illustration} 
+                    alt="Illustration" className="illustration"
+                    height="500px" width="500px"></img>
                 </div>
             </div>
         </div>
