@@ -2,13 +2,13 @@ import {icon_list} from "./assets/icon-list.svg"
 import { useNavigate } from "react-router-dom";
 
 function Success(){
-    
-    const navigate = useNavigate()
 
-    const upload = (event) => {
-	    event.preventDefault() 
-        navigate("/Home") 
-    };
+    const navigate = useNavigate();
+
+    const handleMain = (e) =>{
+        e.preventDefault();
+        navigate('/home')
+    }
 
     return(
         <>
@@ -17,7 +17,7 @@ function Success(){
             <p>A confirmation email has been sent to {email}. 
                 Please open it and click the button inside
                 to confirm your subscription.</p>
-            <button classname="btn" onClick={upload}>Dismiss message</button>
+            <button classname="btn" onClick={handleMain}>Dismiss message</button>
         </>
     )
 }
