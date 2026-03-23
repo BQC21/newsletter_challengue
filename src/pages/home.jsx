@@ -1,22 +1,25 @@
 
-import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {icon_list} from "./assets/icon-list.svg"
 import {icon_success} from "./assets/icon-success.svg"
 
-import Success from "./pages/success"
-import { useNavigate } from "react-router-dom";
-
 function Home() {
 
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate()
-    const form = document.getElementById("my_form");
-    const msg = document.getElementById("message");
 
-    form.addEventListener("submit", function (event) {
-            event.preventDefault(); 
-            msg != null && navigate("/success") 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!message.trim()){ // caso de error
+            setError('Valid email required');
+            return;
         }
-    );
+        // caso de exito
+        navigate('/success', {state: {noteText: message}}) // pasar contenido
+    }
 
     return (
     <>
@@ -29,10 +32,19 @@ function Home() {
                 <p><a ref={icon_list}></a> Measuring to ensure updates are a success </p>
                 <p><a ref={icon_list}></a> and much more! </p>
                 
-                <form id="my_form">
-                    <small className="small-text">Email address</small>
-                    <input id = "message" type="text" placeholder="email@company.com"></input>
-                    <button classname="btn" type = "submit">Subscribe to monthly newsletter</button>
+                <form onSubmit={handleSubmit}>
+                    <label className="small-text">
+                        Email address
+                        <input value={message} 
+                                onChange={(e) => {
+                                    setMessage(e.target.value);
+                                    setError(null) && (error);
+                                }}
+                                placeholder="email@company.com">
+                        </input>
+                    </label>
+                    {error && <div className="error">{error}</div>}
+                    <button className="btn" type = "submit">Subscribe to monthly newsletter</button>
                 </form>
             </div>
             <div className="col-md-6">
