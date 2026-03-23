@@ -2,9 +2,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ReactComponent as IconList } from './assets/icon-list.svg'
-// import {icon_list} from "./assets/icon-list.svg"
-import {icon_success} from "./assets/icon-success.svg"
+import '../styles/index.css'
+
+// import { ReactComponent as IconList } from '../assets/icon-list.svg'
+// import {icon_list} from "./icon_list.svg"
+// import iconSuccess from "./icon_success.svg"
 
 function Home() {
 
@@ -18,12 +20,11 @@ function Home() {
             setError('Valid email required');
             return;
         }
-        // caso de exito
-        navigate('/Success', {state: {noteText: message}}) // pasar contenido
+        // caso de exito (navegar a enlace y pasar contenido)
+        navigate('/success', {state: {message}}) 
     }
 
     return (
-    <>
         <div className="card-field">
             <div className="row-container">
                 <div className="col-md-6">
@@ -32,31 +33,38 @@ function Home() {
                     {/* <p><img src={icon_list} alt="icon"></img> Product discovery and building what matters </p>
                     <p><img src={icon_list} alt="icon"></img> Measuring to ensure updates are a success </p>
                     <p><img src={icon_list} alt="icon"></img> and much more! </p> */}
-                    <p><IconList /> Product discovery and building what matters </p>
+                    
+                    {/* <p><IconList /> Product discovery and building what matters </p>
                     <p><IconList /> Measuring to ensure updates are a success </p>
-                    <p><IconList /> and much more! </p>        
+                    <p><IconList /> and much more! </p>         */}
+                    
                     <form onSubmit={handleSubmit}>
                         <label className="small-text">
                             Email address
-                            <input type = "email"
-                                    value={message} 
-                                    onChange={(e) => {
-                                        setMessage(e.target.value);
-                                        setError(null);
-                                    }}
-                                    placeholder="email@company.com">
-                            </input>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={message}
+                                onChange={(e) => {
+                                    setMessage(e.target.value);
+                                    setError(null);
+                                }}
+                                placeholder="email@company.com"
+                                aria-invalid={!!error}
+                                aria-describedby={error ? "email-error" : undefined}
+                            />
                         </label>
                         {error && <div className="error">{error}</div>}
                         <button className="btn" type = "submit">Subscribe to monthly newsletter</button>
                     </form>
                 </div>
                 <div className="col-md-6">
-                    <img ref={icon_success}></img>
+                    <p>Imagen</p>
+                    {/* <img src={iconSuccess} alt="Illustration" className="illustration"></img> */}
                 </div>
             </div>
         </div>
-    </>
     )
 }
 
