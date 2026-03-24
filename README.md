@@ -10,9 +10,9 @@ Frontend Mentor challengue to enhance skills creating forms with success message
 * npm packages
 
 ### Learnings:
-1. Using Hook useNavigation to redirect to another view when an event was executed.
-2. Transfer content between 2 different .jsx files by useLocation hook.
-3. Code events with handlers.
+1. Using Hook useNavigation to redirect another view when an event was executed.
+2. Transfer content between 2 different .jsx files using useLocation hook.
+3. Code events with handlers function.
 4. Responsive design layout with mobile first principle.
 
 ### Usage
